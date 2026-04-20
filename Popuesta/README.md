@@ -290,7 +290,7 @@ En la Tabla 1.4 se detalla el caso de uso en el que el personal autorizado de la
 | :---- | :---- |
 |Disparador|El personal autorizado se conecta mediante BLE.|
 |Precondiciones|El sistema está encendido (led de estado armado), las luces estorbostópicas apagadas y buzzer inactivo.|
-|Flujo principal|El personal autorizado se aproxima a la zona de la alarma, se conecta mediante BLE, ingresa su número de usuario y contraseña. Puede dar de alta o de baja usuarios. Tanto al información del personal autorizado como los cambios que realizó, se notifican a la central mediante SMS.|
+|Flujo principal|El personal autorizado se aproxima a la zona de la alarma, se conecta mediante BLE, ingresa su número de usuario y contraseña. Puede dar de alta o de baja usuarios. Tanto la información del personal autorizado como los cambios que realizó, se notifican a la central mediante SMS.|
 |Flujo alternativo|A. El usuario o contraseña son incorrectos, se denega el acceso y se notifica a la central. B. Se activa la alarma mientras se están realizando cambios, se cancelan los cambios (no se guardan), y se cierra la comunicación BLE hasta que la alarma se desactive.|
 
 <p align="center"><em>Tabla 1.4: casos de uso: el personal autorizado se conecta mediante BLE al sistema (llamada)</em></p>
