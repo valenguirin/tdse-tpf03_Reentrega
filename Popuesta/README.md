@@ -263,7 +263,7 @@ En la Tabla 1.2 se presenta el caso de uso en el cual un vecino autorizado activ
 | :---- | :---- |
 |Disparador|El usuario llama al número de la alarma.|
 |Precondiciones|El sistema está encendido (led de estado armado), las luces estroboscópicas apagadas y buzzer inactivo.|
-|Flujo principal|El usuario llama al número guardado (previamente en su lista de contactos) de la alarma, el sistema corta la llamada, valida que el usuario esté registrado. En caso de estar registrado, enciente la sirena, la luz estroboscópica (si es de noche) y notifica a la policía, a los usuarios y a la central que se activó la alarma mediante llamada (y quién lo hizo).|
+|Flujo principal|El usuario llama al número guardado (previamente en su lista de contactos) de la alarma, el sistema corta la llamada, valida que el usuario esté registrado. En caso de estar registrado, enciende la sirena, la luz estroboscópica (si es de noche) y notifica a la policía, a los usuarios y a la central que se activó la alarma mediante llamada (y quién lo hizo).|
 |Flujo alternativo|A. El usuario no está registrado, el sistema corta la llamada y revisa en su memoria si el número está en la base de datos. Al no encontrarlo, mantiene las precondiciones en el mismo estado y notifica a la central el número que fue utilizado. B. Múltiples usuarios llaman, el sistema recibe la llamada pues corta todas a la brevedad. El sistema activó la alarma en la primer llamada, y mientras más llamadas lleguen en los próximos 60 segundos, no reaccionará más que enviando los números de las redundantes llamadas a la central.
 
 <p align="center"><em>Tabla 1.2: casos de uso: el usuario activa la alarma mediante la red GSM (llamada)</em></p>
@@ -276,8 +276,8 @@ En la Tabla 1.3 se describe el caso de uso correspondiente a la activación loca
 | Elemento | Definición |
 | :---- | :---- |
 |Disparador|El usuario presiona el botón de pánico.|
-|Precondiciones|El sistema está encendido (led de estado armado), las luces estorbostópicas apagadas y buzzer inactivo.|
-|Flujo principal|El usuario presiona el botón de pánico ubicado debajo de la alarma. Se enciende la sirena, la luz estorboscópica (si es de noche) y notifica a la policía, a los usuarios y a la central que se activó la alarma mediante botón de pánico.|
+|Precondiciones|El sistema está encendido (led de estado armado), las luces estrobostópicas apagadas y buzzer inactivo.|
+|Flujo principal|El usuario presiona el botón de pánico ubicado debajo de la alarma. Se enciende la sirena, la luz estroboscópica (si es de noche) y notifica a la policía, a los usuarios y a la central que se activó la alarma mediante botón de pánico.|
 |Flujo alternativo|A. El usuario presiona el botón cuando ya hay una llamada activa, la alarma se activa pero por la llamada previa. Los usuarios y la policía reciben el mensaje de que la alarma fue activada por llamada, mientras que la central recibe las dos activaciones. B. El usuario presiona el botón cuando ya está sonando la alarma. La central es la única notificada y el estado de la alarma no cambia.|
 
 <p align="center"><em>Tabla 1.3: casos de uso: el usuario activa la alarma mediante botón de pánico (llamada)</em></p>
@@ -289,7 +289,7 @@ En la Tabla 1.4 se detalla el caso de uso en el que el personal autorizado de la
 | Elemento | Definición |
 | :---- | :---- |
 |Disparador|El personal autorizado se conecta mediante BLE.|
-|Precondiciones|El sistema está encendido (led de estado armado), las luces estorbostópicas apagadas y buzzer inactivo.|
+|Precondiciones|El sistema está encendido (led de estado armado), las luces estrobostópicas apagadas y buzzer inactivo.|
 |Flujo principal|El personal autorizado se aproxima a la zona de la alarma, se conecta mediante BLE, ingresa su número de usuario y contraseña. Puede dar de alta o de baja usuarios. Tanto la información del personal autorizado como los cambios que realizó, se notifican a la central mediante SMS.|
 |Flujo alternativo|A. El usuario o contraseña son incorrectos, se denega el acceso y se notifica a la central. B. Se activa la alarma mientras se están realizando cambios, se cancelan los cambios (no se guardan), y se cierra la comunicación BLE hasta que la alarma se desactive.|
 
