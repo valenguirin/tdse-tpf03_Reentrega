@@ -234,7 +234,7 @@ En la Tabla 1.1 se presentan los requisitos del proyecto, organizados por grupo 
 | :---- | :---- | :---- |
 |Acceso|1.1|El sistema permitirá el acceso mediante BLE.|
 ||1.2|En caso de acceso permitido, el sistema guardará qué usuario root ingresó|
-|Indicadores|2.1|El sistema contará con un indicador luminoso (luz estorboscópica) para indicar que hay una alerta.|
+|Indicadores|2.1|El sistema contará con un indicador luminoso (luz estroboscópica) para indicar que hay una alerta.|
 ||2.2|El sistema contará con un buzzer (sirena) para indicar la activación de la alarma.|
 ||2.3|El sistema contará con un set de leds para indicar que la clave es correcta.|
 ||2.4|El sistema contará con un set de leds para indicar que la clave es incorrecta.|
