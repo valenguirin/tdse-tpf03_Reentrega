@@ -1,4 +1,4 @@
-<img src="logo-fiuba.png" width="50%" />
+<img src="logo-fiuba.png" alt="Logo FIUBA" width="50%" />
 
 # Alarma vecinal
 
