@@ -59,7 +59,7 @@ Las mediciones se hicieron en las situaciones de estrés, las
 
 Con período de tick: $T$ $= 1 ms = 1000 µs$ , el factor de utilización es:
 
-$$U = \sum_{i=0}^{N-1} \frac{\text{wcet\_max}[i]}{T}$$
+$$U = \sum_{i=0}^{N-1} \frac{\text{wcet\\_max}[i]}{T}$$
 
 Mapeando los índices de la captura contra el `enum Wcet_Id` de [App/Inc/wcet.h](App/Inc/wcet.h):
 
