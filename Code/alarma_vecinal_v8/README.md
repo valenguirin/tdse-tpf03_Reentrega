@@ -111,7 +111,7 @@ $$U_A = \frac{3 + 4 + 11 + 6 + 1 + 4 + 1 + 1 + 2 + 1}{1000} = \frac{34}{1000} = 
 
 SIM800L alimentado pero sin SIM ni antena. La FSM del GSM ejecuta `AT+CMGF`, `AT+CLIP` y `AT+CREG` en loop sin completar el registro a red.
 
-![wcet_max[] inicial sin SIM ni antena GSM](docs/img/wcet_init.png)
+![wcet_max[] inicial sin SIM ni antena GSM](docs/img/wcet_init_0.png)
 
 | Índice | Tarea (`Wcet_Id`)                | `wcet_max[i]` (µs) | Contribución a U (`/1000`) |
 | :----: | -------------------------------- | :----------------: | :------------------------: |
