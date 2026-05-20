@@ -47,7 +47,7 @@ Los archivos `bsp_*` son el **Board Support Package**: la **única capa que toca
 
 ## 5. Mediciones WCET : 20% de CPU
 
-Las mediciones se hicieron en las situaciones de estrés, las
+Las mediciones se hicieron en las situaciones de estrés del sistema: activación por botón de pánico y por llamada, SMS a todos los destinatarios, llamada de un número no registrado, alta a un número nuevo y activación por este nuevo número, activación de sirena y luz estroboscópica, ejecutadas sobre hardware con SIM y antena GSM operativas en una sesión previa.
 
 **La unidad de los valores en la captura:** todos los números del array "wcet_max[]" están expresados en **microsegundos (µs)**. La conversión de ciclos DWT a µs la hace "wcet_stop()" dividiendo por la frecuencia del core (64 MHz), ver [App/Src/wcet.c](App/Src/wcet.c).
 
@@ -59,7 +59,7 @@ Las mediciones se hicieron en las situaciones de estrés, las
 
 Con período de tick: $T$ $= 1 ms = 1000 µs$ , el factor de utilización es:
 
-$$U = \sum_{i=0}^{N-1} \frac{\text{wcet\\_max}[i]}{T}$$
+$$U=\sum_{i=0}^{N-1}\frac{\text{wcet\_max}[i]}{T}$$
 
 Mapeando los índices de la captura contra el `enum Wcet_Id` de [App/Inc/wcet.h](App/Inc/wcet.h):
 
@@ -80,6 +80,54 @@ Mapeando los índices de la captura contra el `enum Wcet_Id` de [App/Inc/wcet.h]
 $$U = \frac{4 + 4 + 72 + 51 + 51 + 9 + 3 + 2 + 2 + 2}{1000} = \frac{200}{1000} = 0{,}20 = \mathbf{20\,\%}$$
 
 El sistema consume **20 % de la CPU** en peor caso. El **80 % restante del tick (800 µs cada milisegundo) queda libre** para nuevas tareas o margen ante eventos no medidos, sin riesgo de perder el tick de 1 ms.
+
+### Escenario sin SIM ni antena GSM
+
+Como el equipo no dispone físicamente de la SIM ni de la antena GSM en esta semana, se agregan dos escenarios reproducibles hoy mismo para que la metodología sea verificable. La tabla de estrés del 20 % corresponde a la sesión previa con el chip operativo y se incorporará también a la memoria del TPF.
+
+#### Escenario A - Sistema en reposo
+
+GSM apagado, BLE sin app central conectada. Todas las FSMs descansan en su estado de espera.
+
+![wcet_max[] en reposo total](docs/img/wcet_init_0.png)
+
+| Índice | Tarea (`Wcet_Id`)                | `wcet_max[i]` (µs) | Contribución a U (`/1000`) |
+| :----: | -------------------------------- | :----------------: | :------------------------: |
+|   0    | `WCET_SENSOR_BTN_PANIC`          |         3          |           0.003            |
+|   1    | `WCET_SENSOR_LDR`                |         4          |           0.004            |
+|   2    | `WCET_GSM`                       |         11         |           0.011            |
+|   3    | `WCET_BLE`                       |         6          |           0.006            |
+|   4    | `WCET_EEPROM`                    |         1          |           0.001            |
+|   5    | `WCET_SYSTEM`                    |         4          |           0.004            |
+|   6    | `WCET_ACT_LED_BLUE`              |         1          |           0.001            |
+|   7    | `WCET_ACT_LED_WHITE`             |         1          |           0.001            |
+|   8    | `WCET_ACT_LED_ALARM`             |         2          |           0.002            |
+|   9    | `WCET_ACT_LED_NETWORK`           |         1          |           0.001            |
+|        | **Σ tiempo de cómputo por tick** |     **34 µs**      |         **0.034**          |
+
+$$U_A = \frac{3 + 4 + 11 + 6 + 1 + 4 + 1 + 1 + 2 + 1}{1000} = \frac{34}{1000} = 0{,}034 = \mathbf{3{,}4\,\%}$$
+
+#### Escenario B - GSM encendido pero sin SIM ni antena
+
+SIM800L alimentado pero sin SIM ni antena. La FSM del GSM ejecuta `AT+CMGF`, `AT+CLIP` y `AT+CREG` en loop sin completar el registro a red.
+
+![wcet_max[] inicial sin SIM ni antena GSM](docs/img/wcet_init.png)
+
+| Índice | Tarea (`Wcet_Id`)                | `wcet_max[i]` (µs) | Contribución a U (`/1000`) |
+| :----: | -------------------------------- | :----------------: | :------------------------: |
+|   0    | `WCET_SENSOR_BTN_PANIC`          |         3          |           0.003            |
+|   1    | `WCET_SENSOR_LDR`                |         4          |           0.004            |
+|   2    | `WCET_GSM`                       |         29         |           0.029            |
+|   3    | `WCET_BLE`                       |         21         |           0.021            |
+|   4    | `WCET_EEPROM`                    |         2          |           0.002            |
+|   5    | `WCET_SYSTEM`                    |         4          |           0.004            |
+|   6    | `WCET_ACT_LED_BLUE`              |         1          |           0.001            |
+|   7    | `WCET_ACT_LED_WHITE`             |         1          |           0.001            |
+|   8    | `WCET_ACT_LED_ALARM`             |         2          |           0.002            |
+|   9    | `WCET_ACT_LED_NETWORK`           |         1          |           0.001            |
+|        | **Σ tiempo de cómputo por tick** |     **68 µs**      |         **0.068**          |
+
+$$U_B = \frac{3 + 4 + 29 + 21 + 2 + 4 + 1 + 1 + 2 + 1}{1000} = \frac{68}{1000} = 0{,}068 = \mathbf{6{,}8\,\%}$$
 
 ---
 
