@@ -77,7 +77,7 @@ Mapeando los índices de la captura contra el `enum Wcet_Id` de [App/Inc/wcet.h]
 |   9    | `WCET_ACT_LED_NETWORK`           |         2          |           0.002            |
 |        | **Σ tiempo de cómputo por tick** |     **200 µs**     |         **0.200**          |
 
-$$U = \frac{4 + 4 + 72 + 51 + 51 + 9 + 3 + 2 + 2 + 2}{1000} = \frac{200}{1000} = 0{,}20 = \mathbf{20%}$$
+$$U = \frac{4 + 4 + 72 + 51 + 51 + 9 + 3 + 2 + 2 + 2}{1000} = \frac{200}{1000} = 0{,}20 = \mathbf{20 \%}$$
 
 El sistema consume **20 % de la CPU** en peor caso. El **80 % restante del tick (800 µs cada milisegundo) queda libre** para nuevas tareas o margen ante eventos no medidos, sin riesgo de perder el tick de 1 ms.
 
@@ -105,7 +105,7 @@ GSM apagado, BLE sin app central conectada. Todas las FSMs descansan en su estad
 |   9    | `WCET_ACT_LED_NETWORK`           |         1          |           0.001            |
 |        | **Σ tiempo de cómputo por tick** |     **34 µs**      |         **0.034**          |
 
-$$U_A = \frac{3 + 4 + 11 + 6 + 1 + 4 + 1 + 1 + 2 + 1}{1000} = \frac{34}{1000} = 0{,}034 = \mathbf{3{,}4%}$$
+$$U_A = \frac{3 + 4 + 11 + 6 + 1 + 4 + 1 + 1 + 2 + 1}{1000} = \frac{34}{1000} = 0{,}034 = \mathbf{3{,}4 \%}$$
 
 #### Escenario B - GSM encendido pero sin SIM ni antena
 
@@ -127,7 +127,7 @@ SIM800L alimentado pero sin SIM ni antena. La FSM del GSM ejecuta `AT+CMGF`, `AT
 |   9    | `WCET_ACT_LED_NETWORK`           |         1          |           0.001            |
 |        | **Σ tiempo de cómputo por tick** |     **68 µs**      |         **0.068**          |
 
-$$U_B = \frac{3 + 4 + 29 + 21 + 2 + 4 + 1 + 1 + 2 + 1}{1000} = \frac{68}{1000} = 0{,}068 = \mathbf{6{,}8%}$$
+$$U_B = \frac{3 + 4 + 29 + 21 + 2 + 4 + 1 + 1 + 2 + 1}{1000} = \frac{68}{1000} = 0{,}068 = \mathbf{6{,}8 \%}$$
 
 ---
 
