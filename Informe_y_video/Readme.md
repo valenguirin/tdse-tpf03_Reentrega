@@ -11,7 +11,7 @@
 </p>
 
 <p align="center">
-  <strong>86.65/TA134 Taller de Sistemas Embebidos</strong>
+  <strong>TA134 Taller de Sistemas Embebidos</strong>
 </p>
 
 # Memoria del trabajo final: **Alarma vecinal**
@@ -42,13 +42,13 @@
 # Resumen
 
 En el presente trabajo se diseñó e implementó una alarma vecinal. Se pretendía solucionar la problemática de inseguridad en barrios comprometidos de la Ciudad de Buenos Aires o sus alrededores.
-Mediante un módulo GSM y un botón de pánico se logró que los usuarios puedan hacer sonar una alarma sonora y con luz estroboscópica para notificar a la policía y a la central inmediatamente. Para su mantenimiento, un vecino encargado puede conectarse a través del módulo BLE con doble factor de autenticación.
-La importancia de este trabajo radica en la consolidación de lo aprendido en la materia en cuestión en un trabajo integral de este calibre, además de solucionar potencial y parcialmente el problema de la inseguridad ya mencionado. El actual trabajo es una buena representación de lo aprendido durante la cursada del Taller de Sistemas Embebidos ya que involucra el manejo de la placa STM para comunicar módulos entre sí, vinculando así la implementación de un código con la interconexión de los distintos elementos que componen al sistema.
+Mediante un módulo GSM y un botón de pánico se logró que los usuarios puedan hacer sonar una alarma sonora y con luz estroboscópica para notificar a la policía y a la central operadora del sistema de la alarma inmediatamente. Para su mantenimiento, un vecino encargado puede conectarse a través del módulo BLE con doble factor de autenticación.
+El actual trabajo involucra el manejo de la placa STM para comunicar módulos entre sí, vinculando así la implementación de un código con la interconexión de los distintos elementos que componen al sistema.
 En esta Memoria se encontrará la motivación del proyecto, diseños de partes y la propuesta de posibles mejoras a implementar.
 
 # Abstract
 
-This paper describes the design and implementation of a neighborhood alarm system aimed at addressing security concerns in high-risk areas of the City of Buenos Aires. By utilizing a GSM module and a panic button, users can trigger an audible alarm and a strobe light to notify both the neighborhood and a central station. For maintenance purposes, technicians can connect via a BLE (Bluetooth Low Energy) module using their personal credentials.
+This paper describes the design and implementation of a neighborhood alarm system aimed at addressing security concerns in high-risk areas of the City of Buenos Aires. By utilizing a GSM module and a panic button, users can trigger an audible alarm and a strobe light to notify both the neighborhood and a operational central system station. For maintenance purposes, technicians can connect via a BLE (Bluetooth Low Energy) module using their personal credentials.
 The significance of this project lies in the consolidation of the knowledge acquired throughout the course into a comprehensive technical application, while offering a potential solution to the aforementioned security issues. This project serves as a robust representation of the learning outcomes from the Embedded Systems course, as it involves programming an STM board to manage inter-module communication, effectively linking software implementation with the interconnection of diverse hardware components.
 This report details the project’s motivation, component designs, and proposes future enhancements.
 
@@ -103,18 +103,18 @@ A ambos les agradecemos por la motivación genuina por los sistemas embebidos qu
     - [3.2.3 Sensor de luz](#323-sensor-de-luz)
     - [3.2.4 Módulo Bluetooth](#324-módulo-bluetooth)
     - [3.2.5 Módulo GSM](#325-módulo-gsm)
-    - [3.2.6 Memoria EEPROM](#327-memoria-eeprom)
+    - [3.2.6 Memoria EEPROM](#326-memoria-eeprom)
 - [CAPÍTULO 4](#capítulo-4)
 - [Ensayos y resultados](#ensayos-y-resultados)
   - [4.1 Desarrollo y pruebas de funcionamiento](#41-desarrollo-y-pruebas-de-funcionamiento)
-  - [4.2 Cumplimiento de requisitos y video](#42-cumplimiento-de-requisitos)
-  - [4.3 Análisis de Ejecución y Consumo Energético](#43-análisis-de-ejecución-y-consumo-energético)
+  - [4.2 Cumplimiento de requisitos y video](#42-cumplimiento-de-requisitos-y-video)
+  - [4.3 Análisis de ejecución y consumo energético](#43-análisis-de-ejecución-y-consumo-energético)
     - [4.3.1 Medición y análisis de consumo](#431-medición-y-análisis-de-consumo)
       - [4.3.1.1 Análisis del módulo GSM (SIM800L)](#4311-análisis-del-módulo-gsm-sim800l)
     - [4.3.2 Medición y análisis de tiempos de ejecución de cada tarea (WCET)](#432-medición-y-análisis-de-tiempos-de-ejecución-de-cada-tarea-wcet)
-      - [4.3.2.1 Análisis Matemático y Conversión Temporal](#4321-análisis-matemático-y-conversión-temporal)
+      - [4.3.2.1 Análisis matemático y conversión temporal](#4321-análisis-matemático-y-conversión-temporal)
     - [4.3.3 Captura de pantalla de "Console \& Build Analyzer"](#433-captura-de-pantalla-de-console--build-analyzer)
-    - [4.3.4 Cálculo del Factor de Uso (U) de la CPU](#434-cálculo-del-factor-de-uso-u-de-la-cpu)
+    - [4.3.4 Cálculo del factor de uso (U) de la CPU](#434-cálculo-del-factor-de-uso-u-de-la-cpu)
     - [4.3.5 Gestión del modo de bajo consumo](#435-gestión-del-modo-de-bajo-consumo)
   - [4.4 Documentación del desarrollo realizado](#44-documentación-del-desarrollo-realizado)
 - [CAPÍTULO 5](#capítulo-5)
@@ -137,8 +137,8 @@ A ambos les agradecemos por la motivación genuina por los sistemas embebidos qu
 | 1.4      | Terminado el documento para la primera entrega                              | 27/02/2026 |
 | 1.5      | Versión final con detalles corregidos para la primer entrega                | 15/03/2026 |
 | 1.6      | Adaptación de la Sección 3.1 y Sección 2.3.9 a la nueva versión de la placa | 20/04/2026 |
-| 1.6      | Adaptación de la Sección 3.2 a la nueva versión del código                  | 22/05/2026 |
-| 1.7      | Agregado de la Sección 4.3 y revisión final                  | 26/05/2026 |
+| 1.7      | Adaptación de la Sección 3.2 a la nueva versión del código                  | 22/05/2026 |
+| 1.8      | Agregado de la Sección 4.3 y revisión final                  | 26/05/2026 |
 
 # CAPÍTULO 1
 
@@ -146,7 +146,7 @@ A ambos les agradecemos por la motivación genuina por los sistemas embebidos qu
 
 ## 1.1 Problemática a resolver
 
-En la realidad de hoy en día y en el contexto de la Ciudad Autónoma de Buenos Aires, la inseguridad se ha vuelto un problema a tener en cuenta mayormente a medida que pasan los años. Si bien el problema trasciende en toda la ciudad, sería imprudente no destacar que la problemática en cuestión tiene un mayor impacto y se ve con mayor frecuencia en las llamadas “villas” alrededor de la ciudad.
+En la realidad de hoy en día y en el contexto de la Ciudad Autónoma de Buenos Aires, la inseguridad se ha vuelto un problema. Si bien el problema trasciende en toda la ciudad, la problemática en cuestión tiene un mayor impacto y se ve con mayor frecuencia en las llamadas “villas” alrededor de la ciudad.
 Según estadísticas de la página de la Ciudad de Buenos Aires, las comunas en donde más delitos se presentan son en aquellas en las que hay villas. Particularmente, en la Comuna 1 es en la que más delitos hubo en diciembre de 2024 y en la que se asienta la Villa 31, la más poblada de la ciudad. En la Figura 1.1 se detalla la distribución de delitos por comuna.
 
 <p align="center">
@@ -162,8 +162,8 @@ El hecho de haber elegido las villas como mercado fue producto de reconocer que 
 
 ## 1.2 Solución a implementar
 
-La solución al problema de la inseguridad en las villas no se soluciona exclusivamente con una alarma vecinal, pero sí se puede reducir considerablemente la costumbre delictiva que está presente y en crecimiento en esas partes de la ciudad.
-Nuestro producto fue pensado y diseñado para ahuyentar y alertar. Posee un botón de pánico accesible para cualquier persona que esté pasando por una situación de inseguridad o para cualquier testigo de alguna. La funcionalidad que fue añadida pensando en los posibles escenarios de delincuencia fue la posibilidad de que algún vecino realice una llamada al número asociado a la alarma y active la alarma remotamente. Esto fue implementado debido a que muchas situaciones delictivas se ven, pero no se enfrentan por miedo a involucrarse. De esta manera, creemos que haber implementado la funcionalidad mencionada, hará que muchas acciones delictivas puedan frenar antes de tiempo o mitigar sus efectos.
+El problema de la inseguridad en las villas no se soluciona exclusivamente con una alarma vecinal, pero sí se puede reducir considerablemente la costumbre delictiva que está presente y en crecimiento en esas partes de la ciudad.
+Nuestro producto fue pensado y diseñado para ahuyentar y alertar. Posee un botón de pánico accesible para cualquier persona que esté pasando por una situación de inseguridad o para cualquier testigo de alguna. La funcionalidad que fue añadida pensando en los distintos escenarios de delincuencia fue la posibilidad de que algún vecino realice una llamada al número asociado a la alarma y active la alarma remotamente. Esto fue implementado debido a que muchas situaciones delictivas se ven, pero no se enfrentan por miedo a involucrarse. De esta manera, creemos que haber implementado la funcionalidad mencionada, hará que muchas acciones delictivas puedan frenar antes de tiempo o mitigar sus efectos.
 Además, la alarma vecinal posee una luz estroboscópica y alarma sonora. Ambas son para alertar al vecindario y ahuyentar al delincuente. La luz únicamente se prende si hay muy baja iluminación, ya que sino sería un gasto de recursos sin sentido. Cabe destacar que al tener como prioridad que se cree una red segura entre vecinos, los usuarios habilitados para llamar son exclusivamente miembros de la calle donde está instalada esta y deben ser incluidos en una _whitelist_ que genera la central. Al momento de la instalación, el técnico podrá conectarse vía Bluetooth a la alarma con su usuario y contraseña y cargar esa lista. Privilegios de administrador serán otorgados a miembros específicos de cada comunidad para poder agregar o quitar miembros de esa lista, para así afianzar todavía más la confianza entre la red del barrio.
 
 ## 1.3 Análisis de sistemas similares al desarrollado
@@ -233,7 +233,7 @@ En las tablas 2.2, 2.3 y 2.4 se presentan tres casos de uso para ejemplificar un
 |                   | B. El usuario presiona el botón cuando ya está sonando la alarma. La central es la única notificada y el estado de la alarma no cambia.                                                                                                                        |
 
 <p align="center">
-  <em>Tabla 2.3: casos de uso: el usuario activa la alarma mediante botón de pánico (llamada).</em>
+  <em>Tabla 2.3: casos de uso: el usuario activa la alarma mediante botón de pánico.</em>
 </p>
 
 | Elemento          | Definición                                                                                                                                                                                                                                                                             |
@@ -245,7 +245,7 @@ En las tablas 2.2, 2.3 y 2.4 se presentan tres casos de uso para ejemplificar un
 |                   | B. Se activa la alarma mientras se están realizando cambios, se cancelan los cambios (no se guardan), y se cierra la comunicación BLE hasta que la alarma se desactive.                                                                                                                |
 
 <p align="center">
-  <em>Tabla 2.4: casos de uso: el personal autorizado se conecta mediante BLE al sistema (llamada).</em>
+  <em>Tabla 2.4: casos de uso: el personal autorizado se conecta mediante BLE al sistema.</em>
 </p>
 
 ### 2.2.1 Diagramas de secuencia del sistema
@@ -312,7 +312,7 @@ Para la alimentación de todo el sistema se usó un cargador de celular de la ma
 
 ### 2.3.2 Microcontrolador
 
-Como controlador principal del sistema se utilizó la placa NUCLEO-F103B. Cuenta con los pines, cantidad de memoria y periféricos de sobra para lo que fue el desarrollo del proyecto. La elección de esta placa fue basada en lo mencionado recientemente.
+Como controlador principal del sistema se utilizó la placa NUCLEO-F103RB. Cuenta con los pines, cantidad de memoria y periféricos de sobra para lo que fue el desarrollo del proyecto. La elección de esta placa fue basada en lo mencionado recientemente.
 
 ### 2.3.3 Módulo GSM
 
@@ -420,7 +420,7 @@ En la Figura 3.2 se observa la vista lateral de la placa. Se incluyen cuatro sep
   <em>Figura 3.2: vista lateral del producto.</em>
 </p>
 
-A continuación, en la Figura 3.3, se expone un esquema de conexiones entre la placa NUCLEO y los módulos incluidos.
+En la Figura 3.3 se expone un esquema de conexiones entre la placa NUCLEO y los módulos incluidos.
 
 <p align="center">
   <img src="./img/conexionado.jpg" alt="Placa lateral" width="600">
@@ -585,6 +585,10 @@ int main(void)
 }
 ```
 
+<p align="center">
+  <em>Código 3.1: implementación de la función main().</em>
+</p>
+
 ### 3.2.2 Botón de pánico
 
 Para la implementación del botón de pánico se decidió implementar un código antirrebote. Para esto se definen cuatro estados: ST_BTN_PANIC_UP, ST_BTN_PANIC_FALLING, ST_BTN_PANIC_DOWN y ST_BTN_PANIC_RISING. A continuación se los explica a cada uno y se expone el código en cuestión.
@@ -639,6 +643,10 @@ default:
     break;
 ```
 
+<p align="center">
+  <em>Código 3.2: implementación del los estados de la máquina del botón de pánico.</em>
+</p>
+
 ### 3.2.3 Sensor de luz
 
 La lógica del sensor LDR es sencilla: interpreta un valor lógico del pin físico para determinar si es de día o de noche. Sin embargo, por más que la lógica no suponga problemas, tuvo que ser considerada la problemática relacionada a los reflejos efímeros, luces de autos o sombras momentáneas que puedan activar el sensor sin sentido (y enciendan la luz estroboscópica sin motivo real). Para evitar esto, se definió una ventana temporal de validación de 1000 milisegundos. La máquina de estados verifica que la lectura se mantenga estable durante esos 1000 ticks consecutivos en los estados de transición (`ST_LDR_GOING_NIGHT` o `ST_LDR_GOING_DAY`). Si la luz varía antes de cumplirse el tiempo, el sistema lo considera una anomalía y vuelve al estado anterior. Esta lógica hace que el sistema posea cierta "inteligencia", ya que además evita la retroalimentación de la propia luz de la alarma. En caso de que efectivamente la alarma esté en presencia de día o noche, el código maneja el cambio de estado a `ST_LDR_DAY` y `ST_LDR_NIGHT` respectivamente. Se expone el fragmento de código relacionado a lo mencionado sobre la lógica de código del sensor de luz LDR.
@@ -689,6 +697,10 @@ case ST_LDR_DAY:
       break;
 ```
 
+<p align="center">
+  <em>Código 3.3: implementación del los estados de la máquina del sensor LDR.</em>
+</p>
+
 ### 3.2.4 Módulo Bluetooth
 
 El código del módulo HM-10 fue pensado y estructurado para operar mediante una máquina de estados y transmisión DMA por el puerto `USART1`, lo que permite recibir comandos sin saturar el microcontrolador. Su seguridad se basa en una autenticación de doble factor (2FA) y control por eventos. Es posible interpretar 3 capas importantes.
@@ -705,6 +717,10 @@ if (any_event_task_ble()) {
   }
 }
 ```
+
+<p align="center">
+  <em>Código 3.4: implementación de la protección por desconexión del módulo BLE.</em>
+</p>
 
 - Autenticación doble: al conectarse un dispositivo, el sistema exige un usuario (validado ignorando mayúsculas) y luego una contraseña (respetando _case-sensitive_). Estos controles son aislados en el archivo `auth_utils.c` explorado a continuación. Puede notarse la buena práctica de _early return_ por longitud al validar la autenticación.
 
@@ -740,6 +756,10 @@ bool auth_pass_match(const char *input, const char *expected)
   return (strcmp(input, expected) == 0);
 }
 ```
+
+<p align="center">
+  <em>Código 3.5: implementación de la doble autenticación del módulo BLE.</em>
+</p>
 
 - Comandos de sesión: una vez autenticado (o sea, el usuario es el líder de la red de vecinos o cualquier usuario con privilegios), el usuario puede gestionar la _whitelist_ con los comandos `ADD`, `DEL` y `LIST`. Los cambios exitosos mandan un evento hacia la EEPROM para su guardado asincrónico **no volátil**. En el código que sigue, se puede apreciar la función `handle_session_command` completa y exacta que se diseñó para procesar los comandos `ADD`, `DEL`, `LIST` y `OUT`.
 
@@ -785,6 +805,10 @@ static FSM_STATUS_BLE handle_session_command(const char *linea)
 }
 ```
 
+<p align="center">
+  <em>Código 3.6: implementación de los comandos del módulo BLE.</em>
+</p>
+
 ### 3.2.5 Módulo GSM
 
 El módulo GSM es el encargado de proveer la conectividad a larga distancia, gestionando tanto la recepción de llamadas para activar la alarma como el envío de mensajes de texto (SMS) de alerta a la comunidad y contactos seleccionados. Toda la comunicación con el módulo SIM800L se realiza a través del puerto USART3 utilizando una máquina de estados y transferencias DMA directas a memoria (`ReceiveToIdle`), garantizando que la CPU nunca se bloquee esperando respuestas de la red celular.
@@ -795,7 +819,7 @@ El funcionamiento del módulo puede dividirse en dos grandes aspectos.
 
 - Gestión de mensajes SMS (alerta): cuando la alarma es disparada (ya sea por el botón de pánico o por una llamada), el sistema central hace que se notifiquen a los contactos de emergencia. La máquina de estados transiciona a un modo iterativo: selecciona el primer destinatario, envía el comando `AT+CMGS` y aguarda asincrónicamente el símbolo prompt (`>`). Una vez inyectado el texto y el carácter de control, la máquina de estados espera la confirmación de la red (`+CMGS:`) antes de avanzar al siguiente número de la lista, procesando toda la cola de mensajes sin detener la ejecución de las luces estroboscópicas ni la sirena.
 
-Se pretende que el siguiente fragmento de código aporte claridad al entendimiento del comportamiento general recién estudiado, mas no necesariamente todos los comandos mencionados.
+Se concluye que el siguiente fragmento de código aporta claridad al entendimiento del comportamiento general recién estudiado, mas no necesariamente todos los comandos mencionados.
 
 ```c
 case ST_GSM_SMS_TEXT_WAITING:
@@ -828,6 +852,10 @@ case ST_GSM_SMS_TEXT_WAITING:
     }
     break;
 ```
+
+<p align="center">
+  <em>Código 3.7: implementación de los comandos internos del módulo GSM.</em>
+</p>
 
 ### 3.2.6 Memoria EEPROM
 
@@ -873,6 +901,10 @@ case ST_EEPROM_WAIT_TWR:
     break;
 ```
 
+<p align="center">
+  <em>Código 3.8: implementación de los estados de la máquina de la memoria EEPROM.</em>
+</p>
+
 # CAPÍTULO 4
 
 # Ensayos y resultados
@@ -893,7 +925,7 @@ Durante el desarrollo de este trabajo fueron realizándose pruebas a medida que 
   <em>Figura 4.1: dispositivo encontrado en la aplicación Serial Bluetooth Terminal.</em>
 </p>
 
-- Módulo HM-10: otra de las pruebas que se realizó con este módulo fue el ingreso de las credenciales autorizadas con nombre de usuario y contraseña. Se probaron casos en los que el usuario ingresa primeramente un nombre no válido, también una contraseña no válida, y también los comandos para añadir y eliminar números de la _whitelist_ y cerrar la sesión. Todo eso puede apreciarse en la Figura 4.2. Cabe mencionar que las pruebas fueron comparadas con el estado de un LED amarillo que se condecía con el estado de la conexión. La evidencia de esto último puede verse en el video al final de este capítulo.
+Otra de las pruebas que se realizó con este módulo fue el ingreso de las credenciales autorizadas con nombre de usuario y contraseña. Se probaron casos en los que el usuario ingresa primeramente un nombre no válido, también una contraseña no válida, y también los comandos para añadir y eliminar números de la _whitelist_ y cerrar la sesión. Todo eso puede apreciarse en la Figura 4.2. Cabe mencionar que las pruebas fueron comparadas con el estado de un LED amarillo que se condecía con el estado de la conexión. La evidencia de esto último puede verse en el video al final de este capítulo.
 
 <p align="center">
   <img src="./img/fig42.png" alt="Placa" width="300">
@@ -920,10 +952,10 @@ Indicadores
 
 - 2.1 El sistema contará con un indicador luminoso (luz estroboscópica) para indicar que hay una alerta.
 - 2.2 El sistema contará con un buzzer (sirena) para indicar la activación de la alarma.
-- 2.3 El sistema enviará un mensaje a la policía, a todos los usuarios y a la central mediante GSM para indicar qué usuario activó la alarma mediante llamada.
-- 2.4 El sistema enviará un mensaje a la policía, a todos los usuarios y a la central mediante GSM para indicar que la alarma se activó mediante botón de pánico.
-- 2.5 El sistema contará con un LED para indicar el estado de la alarma (armada o desarmada).
-- 2.6 El sistema contará con un LED para indicar el estado de la red en el módulo GSM.
+- 2.3 El sistema contará con un LED para indicar el estado de la red en el módulo GSM.
+- 2.4 El sistema enviará un mensaje a la policía, a todos los usuarios y a la central mediante GSM para indicar qué usuario activó la alarma mediante llamada.
+- 2.5 El sistema enviará un mensaje a la policía, a todos los usuarios y a la central mediante GSM para indicar que la alarma se activó mediante botón de pánico.
+- 2.6 El sistema contará con un LED para indicar el estado de la alarma (armada o desarmada).
 
 Interruptores/Botones
 
@@ -957,10 +989,10 @@ Entrega
 
 - 9.1 La entrega del proyecto está prevista para el primer cuatrimestre de 2026.
 
-<mark style="background-color: lightgrey">Se adjunta el link a un video probando las funcionalidades de la alarma vecinal:</mark>
+Se adjunta el link a un video probando las funcionalidades de la alarma vecinal:
 [**video**](https://drive.google.com/file/d/1E4FhQdIoOGOAXSP66gVUsh2_HZPBHyir/view?usp=sharing)
 
-## 4.3 Análisis de Ejecución y Consumo Energético
+## 4.3 Análisis de ejecución y consumo energético
 
 Concluyendo con el análisis del proyecto en todas sus aristas, el presente apartado detalla las métricas de rendimiento y el perfil de consumo eléctrico del sistema. La evaluación responde a los requerimientos técnicos de la arquitectura de hardware y software del proyecto.
 Para las mediciones se incorporó al código la gestión del modo de bajo consumo (se justifica la elección de dicho modo en la sección 4.3.5).
@@ -993,12 +1025,15 @@ void app_update(void)
     /* MODO DE BAJO CONSUMO */
     __WFI();
 }
-
 ```
+
+<p align="center">
+  <em>Código 3.9: implementación de la gestión de bajo consumo.</em>
+</p>
 
 ### 4.3.1 Medición y análisis de consumo
 
-Las pruebas de consumo de corriente sobre la placa NUCLEO-F103RB, realizadas con el módulo Bluetooth (BLE), sendor LDR y memoria EEPROM conectado al STM permanente durante todas las mediciones, arrojaron los siguientes resultados:
+Las pruebas de consumo de corriente sobre la placa NUCLEO-F103RB, realizadas con el módulo Bluetooth (BLE), sensor LDR y memoria EEPROM conectado al STM permanente durante todas las mediciones, arrojaron los siguientes resultados:
 
 - Consumo sobre la línea de 5 V (sistema general):
   - Estado de reposo: 28,9 mA
@@ -1065,13 +1100,13 @@ Las mediciones se hicieron en las situaciones de estrés del sistema: activació
   <em>Figura 4.8: captura de pantalla para el tiempo de ejecución en estrés.</em>
 </p>
 
-#### 4.3.2.1 Análisis Matemático y Conversión Temporal
+#### 4.3.2.1 Análisis matemático y conversión temporal
 
 Con período de tick: $T$ $= 1 ms = 1000 µs$ , el factor de utilización es:
 
 $$U=\sum_{i=0}^{N-1}\frac{\text{wcet\\_max}[i]}{T}$$
 
-Mapeando los índices de la captura contra el `enum Wcet_Id` de [App/Inc/wcet.h](App/Inc/wcet.h) (como se ve en la Tabla 4.1):
+Mapeando los índices de la captura contra el `enum Wcet_Id` de App/Inc/wcet.h (como se ve en la Tabla 4.1):
 
 <div align="center">
 
@@ -1105,7 +1140,7 @@ El reporte de uso de memoria tras la compilación de la versión final del códi
 En la Figura 4.9 se observa la salida generada por el compilador y en la Figura 4.10 se observa el Build Analyzer al momento de _debuggear_.
 
 <p align="center">
-  <img src="./img/b_0_new.png" alt="Placa lateral" width="600">
+  <img src="./img/b_0_new.jpeg" alt="Placa lateral" width="600">
 </p>
 
 <p align="center">
@@ -1114,7 +1149,7 @@ En la Figura 4.9 se observa la salida generada por el compilador y en la Figura 
 </p>
 
 <p align="center">
-  <img src="./img/b_1.png" alt="Placa lateral" width="600">
+  <img src="./img/b_1.jpeg" alt="Placa lateral" width="600">
 </p>
 
 <p align="center">
@@ -1122,7 +1157,7 @@ En la Figura 4.9 se observa la salida generada por el compilador y en la Figura 
 </em>
 </p>
 
-### 4.3.4 Cálculo del Factor de Uso (U) de la CPU
+### 4.3.4 Cálculo del factor de uso (U) de la CPU
 
 Para la determinación del factor de carga del procesador se aplica la relación directa entre el tiempo de ejecución en el peor de los casos y la duración total del ciclo del sistema.
 
@@ -1175,7 +1210,7 @@ Considerando todo lo realizado hasta el momento, proponemos algunas posibles mej
 
 - LED verde indicador de alta y baja de números a la _whitelist_, variando su patrón de parpadeo según si es alta o baja.
 - Que al módulo Bluetooth solo se puedan conectar dispositivos permitidos. Actualmente puede conectarse cualquier dispositivo cercano al módulo.
-- Que la ubicación del botón de pánico esté ubicado para ser presionado desde abajo, para evitar presiones accidentales.
+- Que el botón de pánico esté ubicado para ser presionado desde abajo, para evitar presiones accidentales.
 - Utilizar la red 4G debido al desmantelamiento avanzado de las redes 2G.
 - Utilizar el botón de reset de la placa para resetear el módulo Bluetooth y asegurarse de que quien se va a conectar sea el primero y no queden dispositivos antiguos conectados.
 - Luces y sonidos con frecuencias que dificulten los sentidos del delincuente.
